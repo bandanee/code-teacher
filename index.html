@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODE TEACHER — Learn HTML Like Never Before | Okan Kaplan 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --yellow: #FFE500; --pink: #FF2D78; --cyan: #00F5FF;
+  --dark: #0A0A0A; --white: #FFFFFF; --green: #00FF88;
+  --orange: #FF6B00; --purple: #7C3AED;
+  --grid: rgba(255,255,255,0.04);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; }
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px; opacity: 0.4;
+}
+#hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 40px 24px; text-align: center; overflow: hidden;
+}
+#hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(135deg, rgba(255,229,0,0.07) 0%, transparent 50%),
+              linear-gradient(225deg, rgba(255,45,120,0.07) 0%, transparent 50%);
+}
+.grid-bg {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+.orb1 { width: 500px; height: 500px; background: rgba(255,229,0,0.12); top: -100px; left: -150px; animation: drift1 8s ease-in-out infinite; }
+.orb2 { width: 400px; height: 400px; background: rgba(255,45,120,0.10); bottom: -80px; right: -100px; animation: drift2 10s ease-in-out infinite; }
+.orb3 { width: 300px; height: 300px; background: rgba(0,245,255,0.08); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: drift3 6s ease-in-out infinite; }
+@keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+@keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,40px)} }
+@keyframes drift3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.15)} }
+.hero-inner { position: relative; z-index: 2; max-width: 900px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,229,0,0.12); border: 1px solid rgba(255,229,0,0.3);
+  border-radius: 100px; padding: 6px 16px; margin-bottom: 32px;
+  font-family: 'Space Mono', monospace; font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 2px; color: var(--yellow);
+  animation: fadeUp 0.6s ease both;
+}
+.badge-dot { width: 6px; height: 6px; background: var(--yellow); border-radius: 50%; animation: pls 1.5s infinite; }
+@keyframes pls { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+.hero-title { font-family: 'Bebas Neue', cursive; font-size: clamp(4rem,12vw,9rem); line-height: 0.9; letter-spacing: -2px; animation: fadeUp 0.7s 0.1s ease both; }
+.hero-title .line1 { display: block; color: var(--white); }
+.hero-title .line2 { display: block; color: transparent; -webkit-text-stroke: 2px var(--yellow); }
+.hero-title .line3 { display: block; color: var(--pink); }
+.hero-sub { font-size: clamp(1rem,2.5vw,1.3rem); color: rgba(255,255,255,0.55); max-width: 620px; margin: 24px auto 0; line-height: 1.7; font-weight: 400; animation: fadeUp 0.7s 0.2s ease both; }
+.hero-sub strong { color: var(--white); font-weight: 600; }
+.hero-cta { margin-top: 40px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+.btn-primary { background: var(--yellow); color: var(--dark); border: 3px solid #000; padding: 14px 32px; font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 3px; box-shadow: 4px 4px 0 #000; transition: transform 0.15s, box-shadow 0.15s; text-decoration: none; display: inline-block; }
+.btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+.btn-outline { background: transparent; color: var(--white); border: 3px solid rgba(255,255,255,0.25); padding: 14px 32px; font-family: 'Space Mono', monospace; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 3px; transition: all 0.15s; text-decoration: none; display: inline-block; }
+.btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+.scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 0.55rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 2px; animation: fadeUp 1s 0.8s ease both; }
+.scroll-arrow { width: 20px; height: 20px; border-right: 2px solid rgba(255,255,255,0.3); border-bottom: 2px solid rgba(255,255,255,0.3); transform: rotate(45deg); animation: bounce 1.5s infinite; }
+@keyframes bounce { 0%,100%{transform:rotate(45deg) translate(0,0)} 50%{transform:rotate(45deg) translate(4px,4px)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+.marquee-wrap { background: var(--yellow); border-top: 3px solid #000; border-bottom: 3px solid #000; overflow: hidden; padding: 12px 0; white-space: nowrap; position: relative; z-index: 2; }
+.marquee-inner { display: inline-block; animation: marquee 18s linear infinite; font-family: 'Bebas Neue', cursive; font-size: 1.4rem; letter-spacing: 3px; color: var(--dark); }
+.marquee-inner span { margin: 0 24px; }
+.marquee-inner .dot { color: var(--pink); }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+section { position: relative; z-index: 2; }
+#how { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+.section-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; color: var(--yellow); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.section-label::before { content: ''; flex: 0 0 30px; height: 2px; background: var(--yellow); }
+.section-title { font-family: 'Bebas Neue', cursive; font-size: clamp(2.5rem,6vw,5rem); line-height: 1; margin-bottom: 60px; }
+.section-title em { color: var(--yellow); font-style: normal; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 2px; border: 3px solid #222; }
+.step { background: #111; border: 3px solid #222; padding: 32px 28px; position: relative; transition: background 0.2s; }
+.step:hover { background: #161616; }
+.step-num { font-family: 'Bebas Neue', cursive; font-size: 4rem; color: rgba(255,255,255,0.06); position: absolute; top: 16px; right: 20px; line-height: 1; }
+.step-icon { font-size: 2rem; margin-bottom: 16px; }
+.step h3 { font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--yellow); margin-bottom: 10px; }
+.step p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+#features { padding: 0 24px 100px; max-width: 1100px; margin: 0 auto; }
+.bento { display: grid; grid-template-columns: repeat(12,1fr); gap: 16px; }
+.bcard { background: #111; border: 2px solid #222; border-radius: 4px; padding: 32px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+.bcard:hover { border-color: #444; transform: translateY(-2px); }
+.bc1 { grid-column: span 8; }
+.bc2 { grid-column: span 4; background: var(--yellow); color: var(--dark); border-color: var(--yellow); }
+.bc3 { grid-column: span 4; }
+.bc4 { grid-column: span 4; border-left: 4px solid var(--pink); }
+.bc5 { grid-column: span 4; border-left: 4px solid var(--cyan); }
+.bc6 { grid-column: span 6; }
+.bc7 { grid-column: span 6; background: var(--pink); border-color: var(--pink); }
+.bcard-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; opacity: 0.6; }
+.bcard h3 { font-family: 'Bebas Neue', cursive; font-size: 2rem; line-height: 1.1; margin-bottom: 12px; }
+.bc2 h3, .bc2 p { color: var(--dark); }
+.bc7 h3, .bc7 p { color: #fff; }
+.bcard p { font-size: 0.85rem; line-height: 1.65; opacity: 0.7; }
+.code-snippet { background: #0A0A0A; border: 2px solid #1e1e1e; border-radius: 3px; padding: 16px; margin-top: 20px; font-family: 'Space Mono', monospace; font-size: 0.65rem; line-height: 1.8; }
+.cs-tag{color:#ff79c6;} .cs-attr{color:#50fa7b;} .cs-val{color:#f1fa8c;} .cs-kw{color:#ff79c6;}
+.big-num { font-family: 'Bebas Neue', cursive; font-size: 5rem; line-height: 1; color: var(--dark); margin-bottom: 4px; }
+.big-unit { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 2px; }
+#codetypes { background: #080808; border-top: 3px solid #1a1a1a; border-bottom: 3px solid #1a1a1a; padding: 80px 24px; }
+.codetypes-inner { max-width: 1100px; margin: 0 auto; }
+.blocks-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 3px; margin-top: 48px; }
+.block-type { padding: 24px 20px; border: 2px solid transparent; position: relative; transition: transform 0.15s; }
+.block-type:hover { transform: scale(1.03); }
+.bt-head{background:#FF4D9E;border-color:#000;} .bt-link{background:#0055FF;border-color:#000;}
+.bt-css{background:#c0392b;border-color:#000;} .bt-body{background:#27ae60;border-color:#000;} .bt-js{background:#1a1a1a;border-color:#333;}
+.block-type .bt-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+.block-type h4 { font-family: 'Space Mono', monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 6px; }
+.block-type p { font-size: 0.75rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+.bt-tag { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.3); border-radius: 2px; padding: 1px 6px; font-family: 'Space Mono', monospace; font-size: 0.5rem; color: rgba(255,255,255,0.6); }
+#usecases { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+.use-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 16px; margin-top: 48px; }
+.use-card { border: 2px solid #1e1e1e; border-radius: 4px; padding: 28px; background: #0d0d0d; transition: all 0.2s; position: relative; overflow: hidden; }
+.use-card:hover { border-color: #333; background: #111; }
+.use-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; }
+.uc1::after{background:var(--yellow);} .uc2::after{background:var(--pink);} .uc3::after{background:var(--cyan);}
+.uc4::after{background:var(--green);} .uc5::after{background:var(--orange);} .uc6::after{background:var(--purple);}
+.use-card .uc-icon { font-size: 2.2rem; margin-bottom: 18px; display: block; }
+.use-card h3 { font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--white); margin-bottom: 10px; }
+.use-card p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+#narrshow { background: #050505; border-top: 3px solid #1a1a1a; padding: 80px 24px; }
+.narrshow-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.narr-demo-box { background: #0A0A0A; border: 2px solid #1e1e1e; border-radius: 4px; padding: 40px; margin-top: 40px; position: relative; }
+.narr-demo-box::before { content: '🔊 NARRATION'; position: absolute; top: 0; left: 0; background: var(--yellow); color: var(--dark); font-family: 'Space Mono', monospace; font-size: 0.58rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-bottom: 2px solid #000; border-right: 2px solid #000; }
+.narr-text { font-family: 'Space Mono', monospace; font-size: 0.85rem; color: #00FF88; font-style: italic; line-height: 1.8; margin-top: 24px; min-height: 80px; }
+.narr-controls { display: flex; gap: 12px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
+.narr-btn { background: #1a1a1a; border: 2px solid #333; color: #888; padding: 8px 20px; font-family: 'Space Mono', monospace; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: 3px; transition: all 0.15s; }
+.narr-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+.narr-btn.active { background: var(--yellow); border-color: #000; color: var(--dark); }
+#cta { padding: 120px 24px; text-align: center; background: var(--yellow); border-top: 3px solid #000; position: relative; overflow: hidden; }
+#cta::before { content: 'CODE TEACHER'; font-family: 'Bebas Neue', cursive; font-size: 18vw; color: rgba(0,0,0,0.06); position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); white-space: nowrap; pointer-events: none; }
+.cta-inner { position: relative; z-index: 2; }
+.cta-inner h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem,8vw,7rem); color: var(--dark); line-height: 0.95; margin-bottom: 20px; }
+.cta-inner p { font-size: 1.1rem; color: rgba(0,0,0,0.6); max-width: 500px; margin: 0 auto 36px; line-height: 1.6; }
+.btn-dark { background: var(--dark); color: var(--yellow); border: 3px solid var(--dark); padding: 16px 40px; font-family: 'Space Mono', monospace; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 3px; box-shadow: 6px 6px 0 rgba(0,0,0,0.3); transition: transform 0.15s, box-shadow 0.15s; display: inline-block; text-decoration: none; }
+.btn-dark:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 rgba(0,0,0,0.3); }
+footer { background: var(--dark); border-top: 3px solid #1a1a1a; padding: 32px 24px; text-align: center; font-family: 'Space Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.25); letter-spacing: 2px; text-transform: uppercase; }
+footer strong { color: var(--yellow); }
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<section id="hero">
+  <div class="grid-bg"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Okan Kaplan 2026 &nbsp;·&nbsp; The Future of HTML Education</div>
+    <h1 class="hero-title">
+      <span class="line1">CODE</span>
+      <span class="line2">TEACHER</span>
+      <span class="line3">2026</span>
+    </h1>
+    <p class="hero-sub">Import <strong>any HTML file</strong>. Watch it get parsed into intelligent blocks. Listen to <strong>AI-narrated explanations</strong>. Edit narrations, modify code, and see your page build itself — <strong>live, block by block.</strong></p>
+    <div class="hero-cta">
+      <a href="#how" class="btn-primary">How It Works ↓</a>
+      <a href="#cta" class="btn-outline">Start Learning →</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-arrow"></div></div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>IMPORT HTML</span><span class="dot">✦</span><span>PARSE BLOCKS</span><span class="dot">✦</span><span>AI NARRATION</span><span class="dot">✦</span><span>LIVE PREVIEW</span><span class="dot">✦</span><span>EDIT CODE</span><span class="dot">✦</span><span>PLAY ALL</span><span class="dot">✦</span><span>LEARN HTML</span><span class="dot">✦</span><span>IMPORT HTML</span><span class="dot">✦</span><span>PARSE BLOCKS</span><span class="dot">✦</span><span>AI NARRATION</span><span class="dot">✦</span><span>LIVE PREVIEW</span><span class="dot">✦</span><span>EDIT CODE</span><span class="dot">✦</span><span>PLAY ALL</span><span class="dot">✦</span><span>LEARN HTML</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<section id="how">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Four Steps to<br><em>Master Any HTML File</em></h2>
+  <div class="steps reveal">
+    <div class="step"><div class="step-num">01</div><div class="step-icon">📁</div><h3>Import</h3><p>Upload any .html file or paste raw HTML directly. No setup, no configuration — just paste and go.</p></div>
+    <div class="step"><div class="step-num">02</div><div class="step-icon">⚡</div><h3>Parse</h3><p>Code Teacher splits your HTML into structured blocks: HEAD, CSS, BODY, LINK RELATIONS, and JAVASCRIPT — each individually addressed.</p></div>
+    <div class="step"><div class="step-num">03</div><div class="step-icon">🔊</div><h3>Narrate</h3><p>Claude AI generates a clear beginner-friendly narration for every block. Edit any narration to match your teaching style.</p></div>
+    <div class="step"><div class="step-num">04</div><div class="step-icon">👁</div><h3>Play &amp; Watch</h3><p>Hit Play All. Every block animates in with typewriter effect, narration is spoken aloud, and the live preview builds in real time.</p></div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-label">Features</div>
+  <h2 class="section-title reveal">Everything You Need<br><em>Nothing You Don't</em></h2>
+  <div class="bento reveal">
+    <div class="bcard bc1">
+      <div class="bcard-label">Core Feature</div>
+      <h3>Typewriter Code Animation</h3>
+      <p>Every code block reveals character by character, synced to narration. Students follow visually and audibly — maximising retention.</p>
+      <div class="code-snippet">
+        <span class="cs-tag">&lt;style&gt;</span><br>
+        &nbsp;&nbsp;<span class="cs-attr">body</span> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cs-kw">background</span>: <span class="cs-val">#e0f7fa</span>;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cs-kw">font-family</span>: <span class="cs-val">Arial, sans-serif</span>;<br>
+        &nbsp;&nbsp;}<span id="typeCursor" style="display:inline-block;width:2px;height:1em;background:#00F5FF;vertical-align:text-bottom;animation:blink .7s infinite;"></span><br>
+        <span class="cs-tag">&lt;/style&gt;</span>
+      </div>
+    </div>
+    <div class="bcard bc2">
+      <div class="bcard-label" style="color:rgba(0,0,0,0.5);">Stats</div>
+      <div class="big-num">50+</div><div class="big-unit">Block Types Parsed</div>
+      <div style="margin-top:20px;"><div class="big-num" style="font-size:3.5rem;">∞</div><div class="big-unit">HTML Files Supported</div></div>
+    </div>
+    <div class="bcard bc3"><div class="bcard-label">Live Preview</div><h3>Cumulative Build</h3><p>The right panel shows your page assembling itself in real time. From blank canvas to full webpage — students see exactly how structure creates appearance.</p></div>
+    <div class="bcard bc4"><div class="bcard-label">Edit</div><h3>Editable Narrations</h3><p>Click any narration to edit it instantly. Changes persist through Play All, block switches, everything — your words, permanently saved.</p></div>
+    <div class="bcard bc5"><div class="bcard-label">Dual View</div><h3>Original + Modified Tab</h3><p>Switch between original parsed code and a fully editable modified version. Perfect for live demos and before/after transformations.</p></div>
+    <div class="bcard bc6"><div class="bcard-label">Navigation</div><h3>Full Block Sidebar</h3><p>Every parsed block listed in a collapsible sidebar, colour-coded by type. Click any block to jump to it, or let Play All handle the sequence. Played blocks turn green.</p></div>
+    <div class="bcard bc7"><div class="bcard-label" style="color:rgba(255,255,255,0.6);">AI Powered</div><h3>Claude AI Explanations</h3><p>Every block gets a 2-3 sentence explanation by Claude — clear, accurate, beginner-friendly. Batched API calls mean narrations are ready in seconds.</p></div>
+  </div>
+</section>
+
+<section id="codetypes">
+  <div class="codetypes-inner">
+    <div class="section-label">Block Types</div>
+    <h2 class="section-title reveal">Every Part of HTML<br><em>Understood Separately</em></h2>
+    <div class="blocks-grid reveal">
+      <div class="block-type bt-head"><span class="bt-tag">PARSED</span><span class="bt-icon">🏷️</span><h4>HEAD TAGS</h4><p>DOCTYPE, html tag, title, meta charset, meta viewport — each separated and explained individually.</p></div>
+      <div class="block-type bt-link"><span class="bt-tag">PARSED</span><span class="bt-icon">🔗</span><h4>Link Relations</h4><p>External stylesheets, Google Fonts, CDN scripts — every link tag gets its own block and narration.</p></div>
+      <div class="block-type bt-css"><span class="bt-tag">PARSED</span><span class="bt-icon">🎨</span><h4>CSS Styles</h4><p>Every CSS rule split into its own block. Students learn exactly which selector controls which visual property.</p></div>
+      <div class="block-type bt-body"><span class="bt-tag">PARSED</span><span class="bt-icon">📄</span><h4>Body Content</h4><p>Each top-level HTML element — divs, headers, forms — parsed as an individual teachable block.</p></div>
+      <div class="block-type bt-js"><span class="bt-tag">PARSED</span><span class="bt-icon">⚡</span><h4>JavaScript</h4><p>Inline scripts split into logical chunks. Functions, event listeners and logic all become digestible lessons.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="usecases">
+  <div class="section-label">Use Cases</div>
+  <h2 class="section-title reveal">Who Uses<br><em>Code Teacher?</em></h2>
+  <div class="use-grid reveal">
+    <div class="use-card uc1"><span class="uc-icon">🎓</span><h3>Classroom Instructors</h3><p>Project any HTML file on screen and walk students through it block by block. Narrations speak so you don't have to monologue. The live preview shows the page forming in real time.</p></div>
+    <div class="use-card uc2"><span class="uc-icon">🎥</span><h3>Content Creators</h3><p>Record your screen running Code Teacher for tutorial videos. Animated typewriter and voice narration create professional educational content automatically.</p></div>
+    <div class="use-card uc3"><span class="uc-icon">🧑‍💻</span><h3>Self-Learners</h3><p>Download any HTML template, import it, and let Code Teacher explain every single line. Learn by seeing and hearing — not just reading documentation.</p></div>
+    <div class="use-card uc4"><span class="uc-icon">🏢</span><h3>Bootcamp Trainers</h3><p>Show real-world HTML projects to cohorts. Customise narrations for your curriculum. Switch between original and modified code during live sessions.</p></div>
+    <div class="use-card uc5"><span class="uc-icon">👩‍👧</span><h3>Parents &amp; Tutors</h3><p>No technical expertise required. Import a file, hit Play All, and let the AI do the teaching. Adjust narration language for any age group or skill level.</p></div>
+    <div class="use-card uc6"><span class="uc-icon">🔬</span><h3>Code Reviewers</h3><p>Use Code Teacher as a structured walkthrough in code reviews. Navigate blocks, add custom narrations, share as educational sessions.</p></div>
+  </div>
+</section>
+
+<section id="narrshow">
+  <div class="narrshow-inner">
+    <div class="section-label">AI Narration</div>
+    <h2 class="section-title reveal">Hear the Code<br><em>Come Alive</em></h2>
+    <div class="narr-demo-box reveal">
+      <div class="narr-text" id="narrDemo">Click a button below to preview what AI narration sounds like for each block type.</div>
+      <div class="narr-controls">
+        <button class="narr-btn" onclick="showNarr(this,'head')">HEAD TAGS</button>
+        <button class="narr-btn" onclick="showNarr(this,'css')">CSS STYLES</button>
+        <button class="narr-btn" onclick="showNarr(this,'body')">BODY CONTENT</button>
+        <button class="narr-btn" onclick="showNarr(this,'js')">JAVASCRIPT</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="cta-inner">
+    <h2>Start Teaching<br>HTML Today</h2>
+    <p>No install. No account. No complexity. Import your HTML and let Code Teacher do the rest.</p>
+    <a href="#" class="btn-dark" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Open Code Teacher ↑</a>
+  </div>
+</section>
+
+<footer><strong>CODE TEACHER</strong> &nbsp;·&nbsp; OKAN KAPLAN 2026 &nbsp;·&nbsp; POWERED BY CLAUDE AI &nbsp;·&nbsp; ALL RIGHTS RESERVED</footer>
+
+<script>
+var narrSamples = {
+  head: 'This is the HEAD section — the invisible brain of your HTML document. It tells browsers the character encoding to use, the title to display in the tab, and which external resources to load before the page renders.',
+  css:  'This CSS rule targets the body element and sets the foundation of your entire page design. Every visual element inherits or builds upon these base styles, making this one of the most impactful blocks in the whole document.',
+  body: 'This body element is the visible stage of your webpage. Everything inside it — headings, buttons, forms, and images — is rendered directly in the browser window for users to see and interact with.',
+  js:   'This JavaScript block runs after the page loads and attaches event listeners to interactive elements. When the user clicks a button, this code responds instantly — turning static HTML into a dynamic, living experience.'
+};
+var voices = [], preferred = null;
+function loadVoices() {
+  voices = speechSynthesis.getVoices() || [];
+  preferred = voices.find(function(v){ return v.name.includes('Google UK English Male'); }) ||
+              voices.find(function(v){ return v.lang.startsWith('en-GB'); }) ||
+              voices.find(function(v){ return v.lang.startsWith('en-US'); }) ||
+              voices[0] || null;
+}
+if (window.speechSynthesis) { speechSynthesis.onvoiceschanged = loadVoices; loadVoices(); }
+var currentBtn = null;
+function showNarr(btn, type) {
+  var box = document.getElementById('narrDemo');
+  var text = narrSamples[type];
+  if (currentBtn) currentBtn.classList.remove('active');
+  currentBtn = btn; btn.classList.add('active');
+  box.textContent = '';
+  var i = 0;
+  clearInterval(window._ni);
+  window._ni = setInterval(function(){ if (i < text.length) { box.textContent += text[i]; i++; } else clearInterval(window._ni); }, 16);
+  if (window.speechSynthesis) {
+    speechSynthesis.cancel();
+    var utt = new SpeechSynthesisUtterance(text);
+    if (preferred) { utt.voice = preferred; utt.lang = preferred.lang; }
+    utt.rate = 1.05; utt.pitch = 1;
+    utt.onend = function(){ btn.classList.remove('active'); currentBtn = null; };
+    speechSynthesis.speak(utt);
+  }
+}
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+var s = document.createElement('style');
+s.textContent = '@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}';
+document.head.appendChild(s);
+</script>
+</body>
+</html>
